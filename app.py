@@ -7,20 +7,21 @@ openai.api_key = st.secrets.OpenAIAPI.openai_api_key
 
 # st.session_stateを使いメッセージのやりとりを保存
 if "messages" not in st.session_state:
-    st.session_state["messages"] = [
-        {"role": "system", "content": "st.secrets.AppSettings.appset"}
-        ]
+    st.session_state["messages"] = []
 
 # チャットボットとやりとりする関数
 def communicate():
     messages = st.session_state["messages"]
 
-    user_message = {"role": "user", "content": st.session_state["user_input"]}
+    user_message = {"role": "assistant", "content": st.session_state["user_input"]}
     messages.append(user_message)
 
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
-        messages=messages
+        messages=[
+            {"role": "system", "content": "あなたは文章校正専門のAIです。"}
+            {"role": "user", "content": "条件に沿って知人との会話で送るメッセージを校正してください。1.相手を不快にさせないこと。2.くどい文章にしないこと。3.本来の意味を損なわないこと。"}
+        ]
     )
 
     bot_message = response["choices"][0]["message"]

@@ -19,8 +19,8 @@ def communicate():
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": "あなたは文章校正専門のAIです。"},
-            {"role": "user", "content": "条件に沿って友達との会話で送るメッセージを校正してください。1.相手を不快にさせないこと。2.長ったらしくしないこと。3.メッセージの本来の意味(伝えたいこと)を損なわないこと。4.誤字脱字は補完すること。"}
+            {"role": "system", "content": "あなたは文章生成,校正専門のAIです。"},
+            {"role": "user", "content": "入力された下書き文章から『伝えたい内容』を読み取って、その続きを書いてください。"}
         ]
     )
 
@@ -31,10 +31,10 @@ def communicate():
 
 
 # ユーザーインターフェイスの構築
-st.title("校正はお任せ！")
-st.write("ChatGPT APIを使ってあなたの卒論を校正します。")
+st.title("あなたの書きたい事、正しく書けてますか？")
+st.write("ChatGPTが煩雑な文章構築を助けてくれますよ！")
 
-user_input = st.text_input("校正したい文章を入力してください。", key="user_input", on_change=communicate)
+user_input = st.text_input("文章を入力してください。", key="user_input", on_change=communicate)
 
 if st.session_state["messages"]:
     messages = st.session_state["messages"]
@@ -42,6 +42,6 @@ if st.session_state["messages"]:
     for message in reversed(messages[1:]):  # 直近のメッセージを上に
         speaker = "👦あなたのテキスト"
         if message["role"]=="assistant":
-            speaker="🤖校正されたテキスト"
+            speaker="🤖AIが出力したテキスト"
 
         st.write(speaker + ": " + message["content"])

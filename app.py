@@ -11,7 +11,6 @@ if "messages" not in st.session_state:
 
 # チャットボットとやりとりする関数
 def communicate():
-    messages = st.session_state["messages"]
 
     user_message = {"role": "assistant", "content": st.session_state["user_input"]}
     messages.append(user_message)

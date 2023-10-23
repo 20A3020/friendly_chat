@@ -19,7 +19,7 @@ def communicate():
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": "あなたは文章校正専門のAIです。"}
+            {"role": "system", "content": "あなたは文章校正専門のAIです。"},
             {"role": "user", "content": "条件に沿って知人との会話で送るメッセージを校正してください。1.相手を不快にさせないこと。2.くどい文章にしないこと。3.本来の意味を損なわないこと。"}
         ]
     )

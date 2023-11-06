@@ -11,8 +11,8 @@ if "messages" not in st.session_state:
 
 # チャットボットとやりとりする関数
 def communicate():
-    messages = st.session_state["massages"]
-    
+    messages = st.session_state["messages"]
+
     user_message = {"role": "assistant", "content": st.session_state["user_input"]}
     messages.append(user_message)
 
@@ -31,10 +31,10 @@ def communicate():
 
 
 # ユーザーインターフェイスの構築
-st.title("あなたの書きたい事、正しく書けてますか？")
-st.write("ChatGPTが煩雑な文章構築を助けてくれますよ！")
+st.title("校正はお任せ！")
+st.write("ChatGPT APIを使ってあなたの卒論を校正します。")
 
-user_input = st.text_input("文章を入力してください。", key="user_input", on_change=communicate)
+user_input = st.text_input("校正したい文章を入力してください。", key="user_input", on_change=communicate)
 
 if st.session_state["messages"]:
     messages = st.session_state["messages"]
@@ -42,6 +42,6 @@ if st.session_state["messages"]:
     for message in reversed(messages[1:]):  # 直近のメッセージを上に
         speaker = "👦あなたのテキスト"
         if message["role"]=="assistant":
-            speaker="🤖AIが出力したテキスト"
+            speaker="🤖校正されたテキスト"
 
         st.write(speaker + ": " + message["content"])

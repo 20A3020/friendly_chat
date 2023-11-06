@@ -19,8 +19,8 @@ def communicate():
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": "あなたは文章生成,校正専門のAIです。"},
-            {"role": "user", "content": "入力された下書き文章から『伝えたい内容』を読み取って、その続きを書いてください。"}
+            {"role": "system", "content": "あなたは文章校正専門のAIです。"},
+            {"role": "user", "content": "次に入力される文章に対して、『誤字,脱字の訂正』『適切な改行,読点,句読点の挿入』『主張を要約した1文を追加』の3項目を行ってください。"}
         ]
     )
 

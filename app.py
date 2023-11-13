@@ -8,7 +8,7 @@ openai.api_key = st.secrets.OpenAIAPI.openai_api_key
 if "messages" not in st.session_state:
     st.session_state["messages"] = [
         {"role": "system", "content": "あなたは文章校正専門のAIです。"},
-            {"role": "user", "content": "次に入力される文章に対して、『誤字,脱字の訂正』『適切な改行,読点,句読点の挿入』『主張を要約した1文を追加』の3項目を行ってください。"}
+        {"role": "user", "content": "次に入力される文章に対して、『誤字,脱字の訂正』『適切な改行,読点,句読点の挿入』『主張を要約した1文を追加』の3項目を行ってください。"}
         ]
 
 # チャットボットとやりとりする関数

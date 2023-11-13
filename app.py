@@ -16,8 +16,7 @@ def communicate():
     messages = st.session_state["messages"]
     user_message = {"role": "user", "content": st.session_state["user_input"]}
     messages.append(user_message)
-    response = client.chat.completions.create(model="gpt-4",
-        messages=messages)
+    response = client.chat.completions.create(model="gpt-3.5-turbo", messages=messages)
     
     bot_message = response["choices"][0]["messages"]
     messages.append(bot_message)

@@ -1,6 +1,8 @@
 import streamlit as st
 from openai import OpenAI
 
+python -m pip install --upgrade pip
+
 client = OpenAI(api_key=st.secrets.OpenAIAPI.openai_api_key)
 
 # Streamlit Community Cloudの「Secrets」からOpenAI API keyを取得

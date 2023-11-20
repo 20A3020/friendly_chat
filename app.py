@@ -1,6 +1,3 @@
-!pip install --upgrade pip
-!pip install setuptools wheel
-
 import streamlit as st
 from openai import OpenAI
 

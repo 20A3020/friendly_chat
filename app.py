@@ -25,6 +25,7 @@ def communicate():
 
     #bot_message = response(completions.choices[0].messages.content)
     #messages.append(bot_message)
+    #送信ok,受信ok,返信表示に問題アリ
 
     st.session_state["user_input"] = ""  # 入力欄を消去
 

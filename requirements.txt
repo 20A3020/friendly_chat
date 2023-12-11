@@ -1,3 +1,2 @@
 streamlit==1.20.0
-pip install openai==0.28
-openai
+openai==0.28.1

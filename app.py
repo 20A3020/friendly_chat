@@ -1,16 +1,14 @@
+
 import streamlit as st
 import openai
 
-client = OpenAI(api_key=st.secrets.OpenAIAPI.openai_api_key)
-
 # Streamlit Community Cloudの「Secrets」からOpenAI API keyを取得
-
+openai.api_key = st.secrets.OpenAIAPI.openai_api_key
 
 # st.session_stateを使いメッセージのやりとりを保存
 if "messages" not in st.session_state:
     st.session_state["messages"] = [
-        {"role": "system", "content": "あなたは文章校正専門のAIです。"},
-        {"role": "user", "content": "次に入力される文章に対して、『誤字,脱字の訂正』『適切な改行,読点,句読点の挿入』『主張を要約した1文を追加』の3項目を行ってください。"}
+        {"role": "system", "content": "st.secrets.AppSettings.appset"}
         ]
 
 # チャットボットとやりとりする関数
@@ -20,12 +18,13 @@ def communicate():
     user_message = {"role": "user", "content": st.session_state["user_input"]}
     messages.append(user_message)
 
-    response = client.chat.completions.create(model="gpt-3.5-turbo",
-    messages=messages)
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=messages
+    )
 
-    bot_message = response(choices[0].messages.content)
+    bot_message = response["choices"][0]["message"]
     messages.append(bot_message)
-    #送信ok,受信ok,返信表示に問題アリ
 
     st.session_state["user_input"] = ""  # 入力欄を消去
 

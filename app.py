@@ -26,11 +26,11 @@ if "messages" not in st.session_state:
 def communicate():
     messages = st.session_state["messages"]
 
-    if select_prompt == '友人向けメッセージ':
-        messages = [
-            {"role": "system", "content": "あなたは優秀な文章校正アシスタントAIです。"},
-            {"role": "user", "content": "友人に向けたメッセージを書きます。『誤字・脱字を訂正する』『親しく,砕けた口調にする』『要点は繰り返して強調する』という3つの条件に従って校正してください。"},
-            ]
+    #if select_prompt == '友人向けメッセージ':
+        #messages = [
+            #{"role": "system", "content": "あなたは優秀な文章校正アシスタントAIです。"},
+            #{"role": "user", "content": "友人に向けたメッセージを書きます。『誤字・脱字を訂正する』『親しく,砕けた口調にする』『要点は繰り返して強調する』という3つの条件に従って校正してください。"},
+            #]
     #elif select_prompt == 'ビジネスメール':
         #st.session_state["messages"] = [
             #{"role": "system", "content": "あなたは優秀な文章校正アシスタントAIです。"},

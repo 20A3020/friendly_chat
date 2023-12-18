@@ -9,23 +9,18 @@ select_prompt = st.sidebar.selectbox('どのプロンプトを利用しますか
 
 # st.session_stateを使いメッセージのやりとりを保存
 if "messages" not in st.session_state:
-    st.session_state["messages"] = [
-        {"role": "system", "content": "あなたは優秀な文章校正アシスタントAIです。"},
-        {"role": "system", "content": "校正プロンプトを設定するので、その条件に沿って校正を行ってください。"}
-        ]
-
-if select_prompt == '友人向けメッセージ':
-    st.session_state["messages"] = [
-        {"role": "system", "content": "あなたは優秀な文章校正アシスタントAIです。"},
-        {"role": "system", "content": "友人に向けたメッセージを書きます。『誤字・脱字を訂正する』『親しく,砕けた口調にする』『要点は繰り返して強調する』という3つの条件に従って校正してください。"},
-        {"role": "system", "content": "校正よろしくお願いします。"}
-        ]
-elif select_prompt == 'ビジネスメール':
-    st.session_state["messages"] = [
-        {"role": "system", "content": "あなたは優秀な文章校正アシスタントAIです。"},
-        {"role": "system", "content": "職場の上司に向けたメールを書きます。『正しく丁寧な文体にする』『誤字・脱字を訂正する』『要件を明確に,簡潔に伝える内容にする』という3つの条件に従って校正してください。結果は3通り出力してください。"},
-        {"role": "system", "content": "校正よろしくお願いします。"}
-        ]
+    if select_prompt == '友人向けメッセージ':
+        st.session_state["messages"] = [
+            {"role": "system", "content": "あなたは優秀な文章校正アシスタントAIです。"},
+            {"role": "system", "content": "友人に向けたメッセージを書きます。『誤字・脱字を訂正する』『親しく,砕けた口調にする』『要点は繰り返して強調する』という3つの条件に従って校正してください。"},
+            {"role": "system", "content": "校正よろしくお願いします。"}
+            ]
+    elif select_prompt == 'ビジネスメール':
+        st.session_state["messages"] = [
+            {"role": "system", "content": "あなたは優秀な文章校正アシスタントAIです。"},
+            {"role": "system", "content": "職場の上司に向けたメールを書きます。『正しく丁寧な文体にする』『誤字・脱字を訂正する』『要件を明確に,簡潔に伝える内容にする』という3つの条件に従って校正してください。結果は3通り出力してください。"},
+            {"role": "system", "content": "校正よろしくお願いします。"}
+            ]
 
 # チャットボットとやりとりする関数
 def communicate():

@@ -9,9 +9,7 @@ select_prompt = st.sidebar.selectbox('どのプロンプトを利用しますか
 
 # st.session_stateを使いメッセージのやりとりを保存
 if "messages" not in st.session_state:
-    st.session_state["messages"] = [
-        {"role": "system", "content": "あなたは優秀な文章校正アシスタントAIです。"}
-        ]
+    st.session_state["messages"] = []
     
 if select_prompt == '友人向けメッセージ':
     st.session_state["messages"] = [

@@ -5,7 +5,7 @@ import openai
 # Streamlit Community Cloudの「Secrets」からOpenAI API keyを取得
 openai.api_key = st.secrets.OpenAIAPI.openai_api_key
 
-select_prompt = st.sidebar.multiselect('どのプロンプトを利用しますか？', ['友人向けメッセージ', 'ビジネスメール', '論文'])
+select_prompt = st.sidebar.selectbox('どのプロンプトを利用しますか？', ['友人向けメッセージ', 'ビジネスメール', '論文'])
 
 prompt = "下記の文章は友人に向けたものです。『誤字・脱字を訂正する』『親しく,砕けた口調にする』『要点は繰り返して強調する』という3つの条件に従って校正してください。"
 

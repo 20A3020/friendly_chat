@@ -9,6 +9,8 @@ select_prompt = st.sidebar.selectbox('どのプロンプトを利用しますか
 
 if select_prompt == '友人向けメッセージ':
     prompt = "下記の文章は友人に向けたものです。『誤字・脱字を訂正する』『親しく,砕けた口調にする』『要点は繰り返して強調する』という3つの条件に従って校正してください。"
+elif select_prompt == 'ビジネスメール':
+    prompt = "下記の文章は職場の上司に向けたメールです。『正しく丁寧な文体にする』『誤字・脱字を訂正する』『要件を明確に,簡潔に伝える内容にする』という3つの条件に従って校正してください。"
 
 # st.session_stateを使いメッセージのやりとりを保存
 if "messages" not in st.session_state:

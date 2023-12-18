@@ -16,7 +16,7 @@ if "messages" not in st.session_state:
 
 if select_prompt == '友人向けメッセージ':
     messages = [
-        {"role": "user", "content": "友人向けメッセージを書きます。"}
+        {"role": "user", "content": "友人向けメッセージを書きます。"},
         {"role": "system", "content": "下記の文章は友人に向けたものです。『誤字・脱字を訂正する』『親しく,砕けた口調にする』『要点は繰り返して強調する』という3つの条件に従って校正してください。"}
         ]
 elif select_prompt == 'ビジネスメール':

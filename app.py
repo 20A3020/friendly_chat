@@ -6,12 +6,14 @@ import openai
 openai.api_key = st.secrets.OpenAIAPI.openai_api_key
 
 select_prompt = st.sidebar.multiselect('どのプロンプトを利用しますか？', ['友人向けメッセージ', 'ビジネスメール', '論文'])
+if select_prompt == '友人向けメッセージ':
+    prompt = "下記の文章は友人に向けたものです。『誤字・脱字を訂正する』『親しく,砕けた口調にする』『要点は繰り返して強調する』という3つの条件に従って校正してください。"
 
 # st.session_stateを使いメッセージのやりとりを保存
 if "messages" not in st.session_state:
     st.session_state["messages"] = [
         {"role": "system", "content": "あなたは優秀な文章校正アシスタントAIです。"},
-        {"role": "user", "content": "下記の文章は友人に向けたものです。『誤字・脱字を訂正する』『親しく,砕けた口調にする』『要点は繰り返して強調する』という3つの条件に従って校正してください。"}
+        {"role": "user", "content": prompt}
         ]
 
 # チャットボットとやりとりする関数

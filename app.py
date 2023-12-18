@@ -7,16 +7,11 @@ openai.api_key = st.secrets.OpenAIAPI.openai_api_key
 
 select_prompt = st.sidebar.selectbox('どのプロンプトを利用しますか？', ['友人向けメッセージ', 'ビジネスメール', '論文'])
 
-if select_prompt == '友人向けメッセージ':
-    prompt = "下記の文章は友人に向けたものです。『誤字・脱字を訂正する』『親しく,砕けた口調にする』『要点は繰り返して強調する』という3つの条件に従って校正してください。"
-if select_prompt == 'ビジネスメール':
-    prompt = "下記の文章は職場の上司に向けたメールです。『正しく丁寧な文体にする』『誤字・脱字を訂正する』『要件を明確に,簡潔に伝える内容にする』という3つの条件に従って校正してください。"
-
 # st.session_stateを使いメッセージのやりとりを保存
 if "messages" not in st.session_state:
     st.session_state["messages"] = [
         {"role": "system", "content": "あなたは優秀な文章校正アシスタントAIです。"},
-        {"role": "user", "content": prompt}
+        {"role": "system", "content": "校正プロンプトを設定するので、その条件に沿って校正を行ってください。"}
         ]
 
 # チャットボットとやりとりする関数
@@ -36,7 +31,6 @@ def communicate():
 
     st.session_state["user_input"] = ""  # 入力欄を消去
 
-
 # ユーザーインターフェイスの構築
 st.title("校正はお任せ！")
 st.write("ChatGPT APIを使ってあなたの卒論を校正します。")
@@ -45,6 +39,9 @@ user_input = st.text_input("校正したい文章を入力してください。"
 
 if st.session_state["messages"]:
     messages = st.session_state["messages"]
+
+    if select_prompt == '友人向けメッセージ':
+        messages = {"role":"system", "content":"下記の文章は友人に向けたものです。『誤字・脱字を訂正する』『親しく,砕けた口調にする』『要点は繰り返して強調する』という3つの条件に従って校正してください。"}
 
     for message in reversed(messages[1:]):  # 直近のメッセージを上に
         speaker = "👦あなたのテキスト"

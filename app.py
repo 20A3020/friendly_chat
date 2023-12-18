@@ -5,7 +5,7 @@ import openai
 # Streamlit Community Cloudの「Secrets」からOpenAI API keyを取得
 openai.api_key = st.secrets.OpenAIAPI.openai_api_key
 
-select_prompt = st.sidebar.multiselect('どのプロンプトを利用しますか？', ['友人向けメッセージ',　'ビジネスメール',　'論文'], default=['選択してください。'])
+select_prompt = st.sidebar.multiselect('どのプロンプトを利用しますか？', ['友人向けメッセージ',　'ビジネスメール',　'論文'], placeholder=['選択してください。'])
 
 # st.session_stateを使いメッセージのやりとりを保存
 if "messages" not in st.session_state:

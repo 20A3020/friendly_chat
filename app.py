@@ -7,12 +7,7 @@ openai.api_key = st.secrets.OpenAIAPI.openai_api_key
 
 select_prompt = st.sidebar.selectbox('どのプロンプトを利用しますか？', ['友人向けメッセージ', 'ビジネスメール', '論文'])
 
-# st.session_stateを使いメッセージのやりとりを保存
-if "messages" not in st.session_state:
-    st.session_state["messages"] = [
-        {"role": "system", "content": "あなたは優秀な文章校正アシスタントAIです。"}
-        ]
-    
+# st.session_stateを使いメッセージのやりとりを保存    
 if select_prompt == '友人向けメッセージ':
     st.session_state["messages"] = [
         {"role": "system", "content": "あなたは優秀な文章校正アシスタントAIです。"},
@@ -27,18 +22,7 @@ elif select_prompt == 'ビジネスメール':
 # チャットボットとやりとりする関数
 def communicate():
     messages = st.session_state["messages"]
-
-    #if select_prompt == '友人向けメッセージ':
-        #messages = [
-            #{"role": "system", "content": "あなたは優秀な文章校正アシスタントAIです。"},
-            #{"role": "user", "content": "友人に向けたメッセージを書きます。『誤字・脱字を訂正する』『親しく,砕けた口調にする』『要点は繰り返して強調する』という3つの条件に従って校正してください。"},
-            #]
-    #elif select_prompt == 'ビジネスメール':
-        #st.session_state["messages"] = [
-            #{"role": "system", "content": "あなたは優秀な文章校正アシスタントAIです。"},
-            #{"role": "user", "content": "職場の上司に向けたメールを書きます。『正しく丁寧な文体にする』『誤字・脱字を訂正する』『要件を明確に,簡潔に伝える内容にする』という3つの条件に従って校正してください。結果は3通り出力してください。"},
-            #]
-
+    
     user_message = {"role": "user", "content": st.session_state["user_input"]}
     messages.append(user_message)
 

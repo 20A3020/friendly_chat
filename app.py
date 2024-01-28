@@ -6,8 +6,8 @@ import openai
 openai.api_key = st.secrets.OpenAIAPI.openai_api_key
 
 select_prompt = st.sidebar.selectbox('誰に宛てたメッセージですか？', ['友人・知人', '先生', '上司', '論文など'])
-answer_volume = st.sidebar.slider('校正結果の出力数を決めてください。', 1,3, 1)
-#answer_accuracy = st.sidebar.slider('回答の揺らぎを決めてください。(小さいほど回答が ます)', 0, 2, 2)
+answer_volume = st.sidebar.slider('校正結果の出力数を決めてください。', 1, 3, 1)
+answer_accuracy = st.sidebar.slider('校正結果の揺らぎを設定してください。(小さいほど内容のブレが無くなります)', 0, 1, 0.1)
 
 # st.session_stateを使いメッセージのやりとりを保存    
 if select_prompt == '友人・知人':

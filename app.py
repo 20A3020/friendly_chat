@@ -9,7 +9,7 @@ select_prompt = st.sidebar.selectbox('誰に向けた文章ですか?', ['友人
 #answer_volume = st.sidebar.slider('校正結果の出力数を決めてください。', 1, 3, 1)校正結果は" + str(answer_volume) + "個出力してください。
 
 # st.session_stateを使いメッセージのやりとりを保存    
-if select_prompt == '友人・知人':
+if select_prompt == '友人':
     st.session_state["messages"] = [
         {"role": "system", "content": "あなたは優秀な文章校正アシスタントAIです。"},
         {"role": "user", "content": "友人へ宛てたメッセージを校正してください。尚、『誤字・脱字の訂正』『曖昧な表現の訂正』『要点の強調』という3つの条件を遵守してください。"}

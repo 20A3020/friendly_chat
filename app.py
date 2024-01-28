@@ -6,7 +6,7 @@ import openai
 openai.api_key = st.secrets.OpenAIAPI.openai_api_key
 
 select_prompt = st.sidebar.selectbox('誰に宛てたメッセージですか？', ['友人・知人', '先生', '上司', '論文など'])
-answer_volume = st.sidebar.slider('校正結果の出力数を決めてください。', 1, 3, 1)
+#answer_volume = st.sidebar.slider('校正結果の出力数を決めてください。', 1, 3, 1)校正結果は" + str(answer_volume) + "個出力してください。
 
 # st.session_stateを使いメッセージのやりとりを保存    
 if select_prompt == '友人・知人':
@@ -17,17 +17,17 @@ if select_prompt == '友人・知人':
 elif select_prompt == '先生':
     st.session_state["messages"] = [
         {"role": "system", "content": "あなたは優秀な文章校正AIです。"},
-        {"role": "user", "content": "先生へ宛てたメッセージを校正してください。尚、『敬語を使う』『誤字・脱字の訂正』『曖昧な表現の訂正』『要点の強調』という4つの条件を遵守してください。校正結果は" + str(answer_volume) + "個出力してください。"},
+        {"role": "user", "content": "先生へ宛てたメッセージを校正してください。尚、『敬語を使う』『誤字・脱字の訂正』『曖昧な表現の訂正』『要点の強調』という4つの条件を遵守してください。"},
         ]
 elif select_prompt == '上司':
     st.session_state["messages"] = [
         {"role": "system", "content": "あなたは優秀な文章校正AIです。"},
-        {"role": "user", "content": "上司へ宛てたメッセージを校正してください。尚、『礼節を弁えた,簡潔な文章にする』『誤字・脱字の訂正』『曖昧な表現の訂正』『要点の強調』という4つの条件を遵守してください。校正結果は" + str(answer_volume) + "個出力してください。"},
+        {"role": "user", "content": "上司へ宛てたメッセージを校正してください。尚、『礼節を弁えた,簡潔な文章にする』『誤字・脱字の訂正』『曖昧な表現の訂正』『要点の強調』という4つの条件を遵守してください。"},
         ]
 elif select_prompt == '論文など':
     st.session_state["messages"] = [
         {"role": "system", "content": "あなたは優秀な文章校正AIです。"},
-        {"role": "user", "content": "論文を校正してください。尚、『誤字・脱字の訂正』『曖昧な表現の訂正』『要点の強調』『表現・表記方法の統一』『だ・である調の文体にする』『整合性の取れない点を指摘する』『論文として適した文でない点を指摘する』という7つの条件を遵守してください。校正結果は" + str(answer_volume) + "個出力してください。"},
+        {"role": "user", "content": "論文を校正してください。尚、『誤字・脱字の訂正』『曖昧な表現の訂正』『要点の強調』『表現・表記方法の統一』『だ・である調の文体にする』『整合性の取れない点を指摘する』『論文として適した文でない点を指摘する』という7つの条件を遵守してください。"},
         ]
 
 # チャットボットとやりとりする関数

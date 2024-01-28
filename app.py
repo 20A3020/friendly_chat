@@ -17,17 +17,17 @@ if select_prompt == '友人・知人':
 elif select_prompt == '先生':
     st.session_state["messages"] = [
         {"role": "system", "content": "あなたは優秀な文章校正アシスタントAIです。"},
-        {"role": "user", "content": "先生へ宛てたメッセージを校正してください。尚、『敬語を使う』『誤字・脱字の訂正』『曖昧な表現の訂正』『要点の強調』という4つの条件を遵守してください。"},
+        {"role": "user", "content": "先生へ宛てたメッセージを校正してください。尚、『敬語を使う』『誤字・脱字の訂正』『曖昧な表現の訂正』『要点の強調』という4つの条件を遵守してください。"}
         ]
 elif select_prompt == '上司':
     st.session_state["messages"] = [
         {"role": "system", "content": "あなたは優秀な文章校正アシスタントAIです。"},
-        {"role": "user", "content": "上司へ宛てたメッセージを校正してください。尚、『礼節を弁えた,簡潔な文章にする』『誤字・脱字の訂正』『曖昧な表現の訂正』『要点の強調』という4つの条件を遵守してください。"},
+        {"role": "user", "content": "上司へ宛てたメッセージを校正してください。尚、『礼節を弁えた,簡潔な文章にする』『誤字・脱字の訂正』『曖昧な表現の訂正』『要点の強調』という4つの条件を遵守してください。"}
         ]
 elif select_prompt == '論文など':
     st.session_state["messages"] = [
         {"role": "system", "content": "あなたは優秀な文章校正アシスタントAIです。"},
-        {"role": "user", "content": "論文を校正してください。尚、『誤字・脱字の訂正』『曖昧な表現の訂正』『要点の強調』『表現・表記方法の統一』『だ・である調の文体にする』『整合性の取れない点を指摘する』『論文として適した文でない点を指摘する』という7つの条件を遵守してください。"},
+        {"role": "user", "content": "論文を校正してください。尚、『誤字・脱字の訂正』『曖昧な表現の訂正』『要点の強調』『表現・表記方法の統一』『だ・である調の文体にする』『整合性の取れない点を指摘する』『論文として適した文でない点を指摘する』という7つの条件を遵守してください。"}
         ]
 
 # チャットボットとやりとりする関数
@@ -39,7 +39,7 @@ def communicate():
 
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
-        messages=messages,
+        messages=messages
     )
 
     bot_message = response["choices"][0]["message"]
@@ -51,7 +51,7 @@ def communicate():
 st.title("文章校正アシスタント")
 st.write("「その文章、誤って誰かを傷つけない？」「隠れたミス、見逃してない？」チェックしてみようよ！")
 
-user_input = st.text_input("↓ここに校正したい文章を入力してください。", key="user_input", on_change=communicate)
+user_input = st.text_input("ここに校正したい文章を入力してください。", key="user_input", on_change=communicate)
 
 if st.session_state["messages"]:
     messages = st.session_state["messages"]

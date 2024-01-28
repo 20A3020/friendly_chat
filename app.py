@@ -7,7 +7,7 @@ openai.api_key = st.secrets.OpenAIAPI.openai_api_key
 
 select_prompt = st.sidebar.selectbox('誰に宛てたメッセージですか？', ['友人・知人', '先生', '上司', '論文など'])
 answer_volume = st.sidebar.slider('校正結果の出力数を決めてください。', 1, 3, 1)
-answer_accuracy = st.sidebar.slider('校正結果の揺らぎを設定してください。(小さいほど内容のブレが無くなります)', 0, 1, 1)
+answer_accuracy = st.sidebar.slider('校正結果の揺らぎを設定してください。(小さいほど内容のブレが無くなります)', 0, 10, 7)
 
 # st.session_stateを使いメッセージのやりとりを保存    
 if select_prompt == '友人・知人':
@@ -45,7 +45,7 @@ def communicate():
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=messages,
-        temperature = answer_accuracy
+        temperature = answer_accuracy/10
     )
 
     bot_message = response["choices"][0]["message"]

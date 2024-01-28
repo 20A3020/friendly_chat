@@ -12,7 +12,7 @@ answer_volume = st.sidebar.slider('校正結果の出力数を決めてくださ
 if select_prompt == '友人・知人':
     st.session_state["messages"] = [
         {"role": "system", "content": "あなたは優秀な文章校正AIです。"},
-        {"role": "user", "content": "友人へ宛てたメッセージを校正してください。尚、『誤字・脱字の訂正』『曖昧な表現の訂正』『要点の強調』という3つの条件を遵守してください。校正結果は" + str(answer_volume) + "個出力してください。"},
+        {"role": "user", "content": "友人へ宛てたメッセージを校正してください。尚、『誤字・脱字の訂正』『曖昧な表現の訂正』『要点の強調』という3つの条件を遵守してください。"},
         ]
 elif select_prompt == '先生':
     st.session_state["messages"] = [

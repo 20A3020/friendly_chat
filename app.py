@@ -5,19 +5,33 @@ import openai
 # Streamlit Community Cloudの「Secrets」からOpenAI API keyを取得
 openai.api_key = st.secrets.OpenAIAPI.openai_api_key
 
-select_prompt = st.sidebar.selectbox('どのプロンプトを利用しますか？', ['友人向けメッセージ', 'ビジネスメール', '論文'])
+select_prompt = st.sidebar.selectbox('誰に宛てたメッセージですか？', ['友人・知人', '先生', '上司', '論文など'])
+answer_volume = st.sidebar.slider('校正結果の出力数を決めてください。', 1,3, 1)
+#answer_accuracy = st.sidebar.slider('回答の揺らぎを決めてください。(小さいほど回答が ます)', 0, 2, 2)
 
 # st.session_stateを使いメッセージのやりとりを保存    
-if select_prompt == '友人向けメッセージ':
+if select_prompt == '友人・知人':
     st.session_state["messages"] = [
-        {"role": "system", "content": "あなたは優秀な文章校正アシスタントAIです。"},
-        {"role": "user", "content": "友人に向けたメッセージを書きます。『誤字・脱字を訂正する』『親しく,砕けた口調にする』『要点は繰り返して強調する』という3つの条件に従って校正してください。"},
+        {"role": "system", "content": "あなたは優秀な文章校正AIです。"},
+        {"role": "user", "content": "友人へ宛てたメッセージを校正してください。尚、『誤字・脱字の訂正』『曖昧な表現の訂正』『要点の強調』という3つの条件を遵守してください。"},
         ]
-elif select_prompt == 'ビジネスメール':
+elif select_prompt == '先生':
     st.session_state["messages"] = [
-        {"role": "system", "content": "あなたは優秀な文章校正アシスタントAIです。"},
-        {"role": "user", "content": "職場の上司に向けたメールを書きます。『正しく丁寧な文体にする』『誤字・脱字を訂正する』『要件を明確に,簡潔に伝える内容にする』という3つの条件に従って校正してください。結果は3通り出力してください。"},
+        {"role": "system", "content": "あなたは優秀な文章校正AIです。"},
+        {"role": "user", "content": "先生へ宛てたメッセージを校正してください。尚、『敬語を使う』『誤字・脱字の訂正』『曖昧な表現の訂正』『要点の強調』という4つの条件を遵守してください。"},
         ]
+elif select_prompt == '上司':
+    st.session_state["messages"] = [
+        {"role": "system", "content": "あなたは優秀な文章校正AIです。"},
+        {"role": "user", "content": "上司へ宛てたメッセージを校正してください。尚、『礼節を弁えた,簡潔な文章にする』『誤字・脱字の訂正』『曖昧な表現の訂正』『要点の強調』という4つの条件を遵守してください。"},
+        ]
+elif select_prompt == '論文など':
+    st.session_state["messages"] = [
+        {"role": "system", "content": "あなたは優秀な文章校正AIです。"},
+        {"role": "user", "content": "論文を校正してください。尚、『誤字・脱字の訂正』『曖昧な表現の訂正』『要点の強調』『表現・表記方法の統一』『だ・である調の文体にする』『整合性の取れない点を指摘する』『論文として適した文でない点を指摘する』という7つの条件を遵守してください"},
+        ]
+
+st.session_state["massages"] += {"role": "system", "content": "また、校正結果は" + answer_volume + "個出力してください。"}
 
 # チャットボットとやりとりする関数
 def communicate():
@@ -29,6 +43,7 @@ def communicate():
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=messages
+        
     )
 
     bot_message = response["choices"][0]["message"]

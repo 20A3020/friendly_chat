@@ -31,7 +31,7 @@ elif select_prompt == '論文など':
         {"role": "user", "content": "論文を校正してください。尚、『誤字・脱字の訂正』『曖昧な表現の訂正』『要点の強調』『表現・表記方法の統一』『だ・である調の文体にする』『整合性の取れない点を指摘する』『論文として適した文でない点を指摘する』という7つの条件を遵守してください"},
         ]
 
-st.session_state["massages"] += {"role": "system", "content": "また、校正結果は" + answer_volume + "個出力してください。"}
+st.session_state["massages"].append({"role": "system", "content": "また、校正結果は" + answer_volume + "個出力してください。"})
 
 # チャットボットとやりとりする関数
 def communicate():

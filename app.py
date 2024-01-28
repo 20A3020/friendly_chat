@@ -54,8 +54,9 @@ def communicate():
     st.session_state["user_input"] = ""  # 入力欄を消去
 
 # ユーザーインターフェイスの構築
-st.title("校正はお任せ！")
-st.write("ChatGPT APIを使ってあなたの卒論を校正します。")
+st.title("文章校正アシスタント")
+st.write("「その文章、誤って誰かを傷つけない？」「隠れたミス、見逃してない？」")
+st.write("文章に潜む間違い、お直しします。")
 
 user_input = st.text_input("校正したい文章を入力してください。", key="user_input", on_change=communicate)
 

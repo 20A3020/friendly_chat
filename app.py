@@ -8,6 +8,7 @@ openai.api_key = st.secrets.OpenAIAPI.openai_api_key
 select_prompt = st.sidebar.selectbox('誰に宛てたメッセージですか？', ['友人・知人', '先生', '上司', '論文など'])
 answer_volume = st.sidebar.slider('校正結果の出力数を決めてください。', 1, 3, 1)
 answer_accuracy = st.sidebar.slider('校正結果の揺らぎを設定してください。(小さいほど内容のブレが無くなります)', 0, 10, 7)
+st.sidebar.print("出力の揺らぎは"+str(answer_accuracy/10))
 
 # st.session_stateを使いメッセージのやりとりを保存    
 if select_prompt == '友人・知人':
@@ -34,7 +35,6 @@ elif select_prompt == '論文など':
         {"role": "user", "content": "論文を校正してください。尚、『誤字・脱字の訂正』『曖昧な表現の訂正』『要点の強調』『表現・表記方法の統一』『だ・である調の文体にする』『整合性の取れない点を指摘する』『論文として適した文でない点を指摘する』という7つの条件を遵守してください。"},
         {"role": "system", "content": "また、校正結果は" + str(answer_volume) + "個出力してください。"},
         ]
-    print("出力の揺らぎは"+str(answer_accuracy/10))
 
 # チャットボットとやりとりする関数
 def communicate():

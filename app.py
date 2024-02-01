@@ -45,7 +45,7 @@ def communicate():
         #temperature = num/10
     )
 
-    bot_message = response["choices"][0]["message"]
+    bot_message = response["choices"][0]["messages"]
     messages.append(bot_message)
 
     st.session_state["user_input"] = ""  # 入力欄を消去

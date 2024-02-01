@@ -6,7 +6,7 @@ import openai
 openai.api_key = st.secrets.OpenAIAPI.openai_api_key
 
 select_prompt = st.sidebar.selectbox('誰に向けた文章ですか?', ['友人', '先生', '上司', '論文など'])
-#answer_volume = st.sidebar.slider('校正結果の出力数を決めてください。', 1, 3, 1) 校正結果は" + str(answer_volume) + "個出力してください。
+#answer_volume = st.sidebar.slider('校正結果の出力数を決めてください。', 1, 3, 1) 
 #num = st.sidebar.slider('出力される回答のブレ幅を設定してください。', 0, 10, 7)
 
 # st.session_stateを使いメッセージのやりとりを保存    
@@ -15,6 +15,7 @@ if select_prompt == '友人':
     st.session_state["messages"] = [
         {"role": "system", "content": "あなたは優秀な文章校正アシスタントAIです。"},
         {"role": "user", "content": "友人へ宛てたメッセージを校正してください。尚、『誤字・脱字の訂正』『曖昧な表現の訂正』『要点の強調』という3つの条件を遵守してください。"}
+        #{"role": "system", "content": "校正結果は" + str(answer_volume) + "個出力してください。"}
         ]
 #elif select_prompt == '先生':
     #st.session_state["messages"] = [

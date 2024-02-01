@@ -10,8 +10,8 @@ openai.api_key = st.secrets.OpenAIAPI.openai_api_key
 #num = st.sidebar.slider('出力される回答のブレ幅を設定してください。', 0, 10, 7)
 
 # st.session_stateを使いメッセージのやりとりを保存    
-#if select_prompt == '友人':
-if "messages" not in st.session_state:
+if select_prompt == '友人' and "messages" not in st.session_state:
+#if "messages" not in st.session_state:
     st.session_state["messages"] = [
         {"role": "system", "content": "あなたは優秀な文章校正アシスタントAIです。"},
         {"role": "user", "content": "友人へ宛てたメッセージを校正してください。尚、『誤字・脱字の訂正』『曖昧な表現の訂正』『要点の強調』という3つの条件を遵守してください。"}

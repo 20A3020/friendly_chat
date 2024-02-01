@@ -17,11 +17,11 @@ if select_prompt == '友人':
         {"role": "user", "content": "友人へ宛てたメッセージを校正してください。尚、『誤字・脱字の訂正』『曖昧な表現の訂正』『要点の強調』という3つの条件を遵守してください。"}
         #{"role": "system", "content": "校正結果は" + str(answer_volume) + "個出力してください。"}
         ]
-#elif select_prompt == '先生':
-    #st.session_state["messages"] = [
-        #{"role": "system", "content": "あなたは優秀な文章校正アシスタントAIです。"},
-        #{"role": "user", "content": "先生へ宛てたメッセージを校正してください。尚、『敬語を使う』『誤字・脱字の訂正』『曖昧な表現の訂正』『要点の強調』という4つの条件を遵守してください。"}
-        #]
+elif select_prompt == '先生':
+    st.session_state["messages"] = [
+        {"role": "system", "content": "あなたは優秀な文章校正アシスタントAIです。"},
+        {"role": "user", "content": "先生へ宛てたメッセージを校正してください。尚、『敬語を使う』『誤字・脱字の訂正』『曖昧な表現の訂正』『要点の強調』という4つの条件を遵守してください。"}
+        ]
 #elif select_prompt == '上司':
     #st.session_state["messages"] = [
         #{"role": "system", "content": "あなたは優秀な文章校正アシスタントAIです。"},

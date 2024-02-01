@@ -6,7 +6,8 @@ import openai
 openai.api_key = st.secrets.OpenAIAPI.openai_api_key
 
 select_prompt = st.sidebar.selectbox('誰に向けた文章ですか?', ['友人', '先生'])
-#answer_volume = st.sidebar.slider('校正結果の出力数を決めてください。', 1, 3, 1)校正結果は" + str(answer_volume) + "個出力してください。
+#answer_volume = st.sidebar.slider('校正結果の出力数を決めてください。', 1, 3, 1) 校正結果は" + str(answer_volume) + "個出力してください。
+#num = st.sidebar.slider('出力される回答のブレ幅を設定してください。', 0, 10, 7)
 
 # st.session_stateを使いメッセージのやりとりを保存    
 if select_prompt == '友人':
@@ -40,6 +41,7 @@ def communicate():
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=messages
+        #temperature = num/10
     )
 
     bot_message = response["choices"][0]["message"]

@@ -4,7 +4,7 @@ import openai
 # Streamlit Community Cloudの「Secrets」からOpenAI API keyを取得
 openai.api_key = st.secrets.OpenAIAPI.openai_api_key
 
-pro = st.sidebar.selectbox('誰に向けて校正しますか？', ['友人', '目上の人', '論文など'])
+pro = st.sidebar.selectbox('誰に向けて校正しますか？', ['友人', '目上の人', '論文など'], '目上の人')
 ans = st.sidebar.slider('校正結果の出力数を決めてください', 1, 3, 2)
 num = st.sidebar.slider('出力される校正結果の揺らぎを設定してください。(小さいほど回答が固定されます)', 0.0, 1.0, 1.0)
 
@@ -13,7 +13,7 @@ if "messages" not in st.session_state:
     if pro == '目上の人':
         st.session_state["messages"] = [
           {"role": "system", "content": "あなたは優秀な文章校正アシスタントAIです。"},
-          {"role": "user", "content": "先生へ宛てたメッセージを校正してください。尚、『礼節を弁えた,簡潔な文章にする』『誤字・脱字の訂正』『曖昧な表現の訂正』『要点の強調』という4つの条件を遵守してください。"},
+          {"role": "user", "content": "目上の人間へ宛てたメッセージを校正してください。尚、『礼節を弁えた,簡潔な文章にする』『誤字・脱字の訂正』『曖昧な表現の訂正』『要点の強調』という4つの条件を遵守してください。"},
           {"role": "user", "content": "校正結果は" + str(ans) + "個出力してください。"},
           ]
     elif pro == '論文など':

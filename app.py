@@ -1,12 +1,12 @@
-
+など
 import streamlit as st
 import openai
 
 # Streamlit Community Cloudの「Secrets」からOpenAI API keyを取得
 openai.api_key = st.secrets.OpenAIAPI.openai_api_key
 
-pro = st.sidebar.selectbox('誰に向けた文章ですか?', ['友人', '目上の人', '論文など'])
-ans = st.sidebar.slider('校正結果の出力数を決めてください。', 1, 3, 1)
+pro = st.sidebar.selectbox('誰に向けて校正しますか？', ['友人', '目上の人', '論文など'], index = None, placeholder = "選択してください")
+ans = st.sidebar.slider('校正結果の出力数を決めてください', 1, 3, 1)
 num = st.sidebar.slider('出力される校正結果の揺らぎを設定してください。(小さいほど回答が固定されます)', 0.0, 1.0, 0.7)
 
 # st.session_stateを使いメッセージのやりとりを保存

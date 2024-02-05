@@ -7,7 +7,7 @@ openai.api_key = st.secrets.OpenAIAPI.openai_api_key
 
 select_prompt = st.sidebar.selectbox('誰に向けた文章ですか?', ['友人', '先生', '上司', '論文など'])
 answer = st.sidebar.slider('校正結果の出力数を決めてください。', 1, 3, 1) 
-num = st.sidebar.slider('出力される回答のブレ幅を設定してください。(小さいほど回答が固定されます)', 0.0, 1.0, 0.7)
+num = st.sidebar.slider('出力される校正結果の揺らぎを設定してください。(小さいほど回答が固定されます)', 0.0, 1.0, 0.7)
 
 # st.session_stateを使いメッセージのやりとりを保存    
 st.session_state["messages"] = [

@@ -31,7 +31,7 @@ def communicate():
     messages = st.session_state["messages1"]
   elif sp == '先生':
     messages = st.session_state["messages2"]
-  else
+  else:
     massages = st.session_state["massages"]
     
     user_message = {"role": "user", "content": st.session_state["user_input"]}

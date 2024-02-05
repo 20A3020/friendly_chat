@@ -29,6 +29,7 @@ if "messages" not in st.session_state:
           {"role": "user", "content": "校正結果は" + str(ans) + "個出力してください。"},
           ]
     elif pro == '選択してください':
+        []
 
 # チャットボットとやりとりする関数
 def communicate():

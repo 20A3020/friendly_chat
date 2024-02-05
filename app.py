@@ -30,7 +30,7 @@ elif sp == '先生':
 
 # チャットボットとやりとりする関数
 def communicate():
-    massages = st.session_state["massages"]
+    messages = st.session_state["messages"]
     
     user_message = {"role": "user", "content": st.session_state["user_input"]}
     messages.append(user_message)

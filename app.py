@@ -14,7 +14,12 @@ st.session_state["answer"] = ans
 #st.session_state["number"] = num 
 
 # st.session_stateを使いメッセージのやりとりを保存
-if st.session_state["select_prompt"] == '友人' and "messages" not in st.session_state:
+if "messages" not in st.session_state:
+  st.session_state["messages"] = [
+        {"role": "system", "content": "あなたは優秀な文章校正アシスタントAIです。"}
+  ]
+
+if st.session_state["select_prompt"] == '友人':
     st.session_state["messages"] = [
         {"role": "system", "content": "あなたは優秀な文章校正アシスタントAIです。"},
         {"role": "user", "content": "友人へ宛てたメッセージを校正してください。尚、『誤字・脱字の訂正』『曖昧な表現の訂正』『要点の強調』という3つの条件を遵守してください。"},

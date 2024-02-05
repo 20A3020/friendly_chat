@@ -18,7 +18,7 @@ if st.session_state["select_prompt"] == '友人' and "messages" not in st.sessio
     st.session_state["messages"] = [
         {"role": "system", "content": "あなたは優秀な文章校正アシスタントAIです。"},
         {"role": "user", "content": "友人へ宛てたメッセージを校正してください。尚、『誤字・脱字の訂正』『曖昧な表現の訂正』『要点の強調』という3つの条件を遵守してください。"},
-        {"role": "user", "content": "校正結果は" + str("answer") + "個出力してください。"},
+        {"role": "user", "content": "校正結果は" + str(st.session_state["answer"]) + "個出力してください。"},
         ]
 elif st.session_state["select_prompt"] == '先生' and "messages" in st.session_state:
     st.session_state["messages"] = [

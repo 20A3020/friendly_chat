@@ -52,7 +52,7 @@ def communicate():
 st.title("文章校正アシスタント")
 st.write("「その文章、誤って誰かを傷つけない？」「隠れたミス、見逃してない？」チェックしてみようよ！")
 
-user_input = st.text_input("ここに校正したい文章を入力してください。", key="user_input", on_change=communicate)
+user_input = st.text_input(placeholder = "ここに校正したい文章を入力してください。", key="user_input", on_change=communicate)
 
 if st.session_state["messages"]:
     messages = st.session_state["messages"]

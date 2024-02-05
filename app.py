@@ -11,7 +11,7 @@ num = st.sidebar.slider('出力される校正結果の揺らぎを設定して�
 
 st.session_state["select_prompt"] = sp
 st.session_state["answer"] = ans
-#st.session_state["number"] = num
+#st.session_state["number"] = num  and "messages" not in st.session_state
 
 # st.session_stateを使いメッセージのやりとりを保存
 if st.session_state["select_prompt"] == '友人':
@@ -20,7 +20,7 @@ if st.session_state["select_prompt"] == '友人':
         {"role": "user", "content": "友人へ宛てたメッセージを校正してください。尚、『誤字・脱字の訂正』『曖昧な表現の訂正』『要点の強調』という3つの条件を遵守してください。"},
         {"role": "user", "content": "校正結果は" + str(ans) + "個出力してください。"},
         ]
-elif st.session_state["select_prompt"] == '先生' and "messages" in st.session_state:
+elif st.session_state["select_prompt"] == '先生':
     st.session_state["messages"] = [
         {"role": "system", "content": "あなたは優秀な文章校正アシスタントAIです。"},
         {"role": "user", "content": "先生へ宛てたメッセージを校正してください。尚、『敬語を使う』『誤字・脱字の訂正』『曖昧な表現の訂正』『要点の強調』という4つの条件を遵守してください。"},
@@ -49,7 +49,7 @@ def communicate():
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=messages,
-        temperature = n
+        temperature = num
     )
 
     bot_message = response["choices"][0]["message"]

@@ -9,11 +9,7 @@ select_prompt = st.sidebar.selectbox('誰に向けた文章ですか?', ['友人
 answer = st.sidebar.slider('校正結果の出力数を決めてください。', 1, 3, 1) 
 num = st.sidebar.slider('出力される校正結果の揺らぎを設定してください。(小さいほど回答が固定されます)', 0.0, 1.0, 0.7)
 
-# st.session_stateを使いメッセージのやりとりを保存    
-st.session_state["messages"] = [
-        {"role": "system", "content": "あなたは優秀な文章校正アシスタントAIです。"}
-]
-
+# st.session_stateを使いメッセージのやりとりを保存
 if select_prompt == '友人' and "messages" not in st.session_state:
     st.session_state["messages"] = [
         {"role": "system", "content": "あなたは優秀な文章校正アシスタントAIです。"},
